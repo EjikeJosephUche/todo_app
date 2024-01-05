@@ -25,22 +25,27 @@ input[type="text"] {
     margin-bottom: 10px;
 }
 
-button {
-    padding: 10px;
-    background-color: #4caf50;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
 ul {
     list-style-type: none;
     padding: 0;
 }
 
 li {
+    position: relative;
     background-color: #eee;
     margin: 5px 0;
     padding: 10px;
     border-radius: 4px;
+}
+
+button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 8px;
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    cursor: pointer;
 }
