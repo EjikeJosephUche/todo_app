@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     // Retrieve tasks from localStorage on page load
     var tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
@@ -9,27 +9,31 @@ document.addEventListener("DOMContentLoaded", function() {
         var taskList = document.getElementById("taskList");
         taskList.innerHTML = ""; // Clear existing tasks
 
-        tasks.forEach(function(taskText) {
+        tasks.forEach(function (taskText) {
             var li = document.createElement("li");
             li.appendChild(document.createTextNode(taskText));
-            taskList.appendChild(li);
+
+            // Add button for task removal with the "remove-button" class
+            var removeButton = document.createElement("button");
+            removeButton.appendChild(document.createTextNode("Remove"));
+            removeButton.className = "remove-button"; // Add the "remove-button" class
+
+            // Add event listener for task removal
+            removeButton.addEventListener("click", function () {
+                li.remove();
+                updateLocalStorage();
+            });
+
+            // Append the remove button to the right end of the list item
+            li.appendChild(removeButton);
 
             // Add event listener for task completion
-            li.addEventListener("click", function() {
+            li.addEventListener("click", function () {
                 this.classList.toggle("completed");
                 updateLocalStorage();
             });
 
-            // Add button for task removal
-            var removeButton = document.createElement("button");
-            removeButton.appendChild(document.createTextNode("Remove"));
-            li.appendChild(removeButton);
-
-            // Add event listener for task removal
-            removeButton.addEventListener("click", function() {
-                li.remove();
-                updateLocalStorage();
-            });
+            taskList.appendChild(li);
         });
     }
 
@@ -50,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var tasks = [];
         var taskElements = document.querySelectorAll("#taskList li");
 
-        taskElements.forEach(function(taskElement) {
+        taskElements.forEach(function (taskElement) {
             tasks.push(taskElement.innerText);
         });
 
