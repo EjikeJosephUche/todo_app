@@ -49,3 +49,12 @@ button {
     border: none;
     cursor: pointer;
 }
+
+button#add {
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
